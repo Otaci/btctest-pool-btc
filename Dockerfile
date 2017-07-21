@@ -33,8 +33,8 @@ RUN cd /eloipool/eloipool \
 
 
 # cleanup
-RUN apk del build-dependencies \
-	&& rm -rf /tmp/* /var/tmp/* 
+#RUN apk del build-dependencies \
+#	&& rm -rf /tmp/* /var/tmp/* 
 
 ADD ./bin /usr/local/bin
 

@@ -10,6 +10,6 @@ docker config create eloipool.conf eloipool.config.py
 docker service create --name pooltest --network btcpooltest \
     --config source=eloipool.conf,target=/eloipool/eloipool/config.py \
     --publish 3334:3334 \
-    otaci/btctest-btc-pool
+    otaci/btctest-btc-pool /bin/sh
 
 
