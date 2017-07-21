@@ -1,4 +1,5 @@
 #!/bin/bash
 
-docker network rm btcpooltest
 docker service rm pooltest
+docker network rm btcpooltest
+docker config rm eloipool.conf
