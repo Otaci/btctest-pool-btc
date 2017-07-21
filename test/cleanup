@@ -1,0 +1,4 @@
+#!/bin/bash
+
+docker network rm btcpooltest
+docker service rm pooltest
