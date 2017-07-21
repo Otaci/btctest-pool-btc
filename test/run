@@ -8,8 +8,8 @@ docker network create --driver overlay btcpooltest
 
 docker config create eloipool.conf eloipool.config.py
 docker service create --name pooltest --network btcpooltest \
-    --config source=eloipool.conf,target=/eloipool/eloipool/config.py \
+    --config source=eloipool.conf,target=/eloipool/config.py \
     --publish 3334:3334 \
-    otaci/btctest-btc-pool /bin/sh
+    otaci/btctest-btc-pool sleep 600
 
 

@@ -14,27 +14,20 @@ WORKDIR /eloipool
 
 # install eloipool
 RUN apk --no-cache upgrade \
-	&& apk --no-cache add python3=3.6.1-r2 \
-	&& apk --no-cache add --virtual build-dependencies git build-base python3-dev=3.6.1-r2 \
+	&& apk --no-cache add python3=3.6.1-r2 git \
 	&& cd /eloipool \
 	&& git clone https://github.com/jgarzik/python-bitcoinrpc.git \
 	&& git clone https://gitorious.org/bitcoin/python-base58.git \
-	&& git clone https://gitorious.org/midstate/midstate.git \
-	&& git clone https://gitorious.org/bitcoin/eloipool.git \
-	&& cd midstate && sed -i ':a;N;$!ba;s/\-lpython3.2\n/\-lpython3.6m\n/' Makefile \
-	&& sed -i ':a;N;$!ba;s/\-I\/usr\/include\/python3.2\n/\-I\/usr\/include\/python3.6m\n/' Makefile \
-	&& make
+	&& git clone https://gitorious.org/bitcoin/eloipool.git 
 
 RUN cd /eloipool/eloipool \
-	&& ln -s ../midstate/midstate.so midstate.so \
 	&& ln -s ../python-base58/base58.py base58.py \
 	&& ln -s ../python-bitcoinrpc/bitcoinrpc/ bitcoinrpc \
 	&& ln -s ../python-bitcoinrpc/jsonrpc/ jsonrpc
 
 
 # cleanup
-#RUN apk del build-dependencies \
-#	&& rm -rf /tmp/* /var/tmp/* 
+RUN rm -rf /tmp/* /var/tmp/* 
 
 ADD ./bin /usr/local/bin
 
